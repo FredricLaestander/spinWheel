@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import type { Request, Response } from "express";
+import connectDB from "./database/db";
 
 dotenv.config();
 
@@ -12,8 +13,10 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use(express.json());
 
-app.listen(process.env.PORT, () => {
-  console.log(`server ready on http://localhost:${process.env.PORT}`);
+connectDB().then(() => {
+  app.listen(process.env.PORT, () => {
+    console.log(`server ready on http://localhost:${process.env.PORT}`);
+  });
 });
 
 export default app;
