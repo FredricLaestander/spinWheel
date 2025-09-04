@@ -1,10 +1,10 @@
 import express from "express";
-import { createSpin, spinAction, getSpins } from "../controllers/spinController";
+import { useOneSpin, addSpin, getUserSpinHistory } from "../controllers/spin";
 
 const spinRouter = express.Router();
 
-spinRouter.post("/spins", createSpin);
-spinRouter.post("/spins/:user_id", spinAction);
-spinRouter.get("/spins", getSpins);
+spinRouter.post("/spins/:user_id", useOneSpin);
+spinRouter.get("/spins", addSpin);
+spinRouter.get("/spins/:user_id", getUserSpinHistory);
 
 export default spinRouter;
